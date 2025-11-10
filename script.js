@@ -72,20 +72,46 @@ document.addEventListener('DOMContentLoaded', function() {
         const stateCode = getStateCode();
         
         // 调试：显示当前状态码
+        console.log('='.repeat(60));
         console.log('Current state code:', stateCode);
         
         // Test rotation for OLL33
+        console.log('\n--- OLL33 Rotation Test ---');
         const oll33Top = '00111001';
         const oll33Edge = '110000000110';
-        console.log('OLL33 original - Top:', oll33Top, 'Edge:', oll33Edge);
-        
         const oll33TopRotations = getAllTopRotations(oll33Top);
         const oll33EdgeRotations = getAllEdgeRotations(oll33Edge);
         
-        console.log('OLL33 all rotations:');
+        console.log('Expected:');
+        console.log('  0° - Top: 00111001, Edge: 110000000110');
+        console.log(' 90° - Top: 01000111, Edge: 000110110000');
+        console.log('180° - Top: 10011100, Edge: 011000000011');
+        console.log('270° - Top: 11100010, Edge: 000011011000');
+        
+        console.log('\nActual:');
         for (let i = 0; i < 4; i++) {
-            console.log(`  ${i * 90}° - Top: ${oll33TopRotations[i]}, Edge: ${oll33EdgeRotations[i]}`);
+            console.log(`${i * 90}°`.padStart(4) + ` - Top: ${oll33TopRotations[i]}, Edge: ${oll33EdgeRotations[i]}`);
         }
+        
+        // Test rotation for OLL22
+        console.log('\n--- OLL22 Rotation Test ---');
+        const oll22Top = '01011010';
+        const oll22Edge = '001101000001';
+        const oll22TopRotations = getAllTopRotations(oll22Top);
+        const oll22EdgeRotations = getAllEdgeRotations(oll22Edge);
+        
+        console.log('Expected:');
+        console.log('  0° - Top: 01011010, Edge: 001101000001');
+        console.log(' 90° - Top: 01011010, Edge: 101001001000');
+        console.log('180° - Top: 01011010, Edge: 100000101100');
+        console.log('270° - Top: 01011010, Edge: 000100100101');
+        
+        console.log('\nActual:');
+        for (let i = 0; i < 4; i++) {
+            console.log(`${i * 90}°`.padStart(4) + ` - Top: ${oll22TopRotations[i]}, Edge: ${oll22EdgeRotations[i]}`);
+        }
+        
+        console.log('\n--- Detection ---');
         
         // 识别OLL情况
         const detectedCase = detectOLLCase(stateCode);
@@ -142,6 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const edgeCode = stateCode.substring(8, 20);
         
         // 调试：显示分离的编码
+        console.log('\n=== Detection Input ===');
         console.log('Current state - Top:', topCode, 'Edge:', edgeCode);
         
         // OLL case database (from cases file)
@@ -211,11 +238,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const topVariants = getAllTopRotations(oll.topPattern);
             const edgeVariants = getAllEdgeRotations(oll.edgePattern);
             
+            // Debug: Log patterns for OLL33 and OLL22
+            if (oll.name === 'OLL33' || oll.name === 'OLL22') {
+                console.log(`\nChecking ${oll.name}:`);
+                console.log(`  Original - Top: ${oll.topPattern}, Edge: ${oll.edgePattern}`);
+                for (let i = 0; i < 4; i++) {
+                    console.log(`  ${i * 90}° - Top: ${topVariants[i]}, Edge: ${edgeVariants[i]}`);
+                }
+            }
+            
             // 检查所有旋转组合
             for (let i = 0; i < 4; i++) {
                 if (topVariants[i] === topCode && edgeVariants[i] === edgeCode) {
-                    console.log(`Match found: ${oll.name} at rotation ${i * 90}°`);
-                    console.log(`Pattern - Top: ${topVariants[i]}, Edge: ${edgeVariants[i]}`);
+                    console.log(`\n✓ Match found: ${oll.name} at rotation ${i * 90}°`);
+                    console.log(`  Pattern - Top: ${topVariants[i]}, Edge: ${edgeVariants[i]}`);
                     return oll;
                 }
             }
@@ -243,11 +279,27 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 旋转顶面图案90度
     function rotateTopPattern(pattern) {
-        // 顶面位置映射 (8位，顺序: 0-7 对应位置)
-        // 原始: 0 1 2    旋转90度后: 6 3 0
-        //       3   5                7   1
-        //       6 7 8                8 5 2
-        const map = [6, 3, 0, 7, 1, 8, 5, 2];
+        // Pattern has 8 bits representing positions (excluding center):
+        // Bit index: 0 1 2 3 4 5 6 7
+        // Position:  0 1 2 3 5 6 7 8 (skipping center at position 4)
+        // Layout:    0 1 2
+        //            3 X 5
+        //            6 7 8
+        // 
+        // After 90° clockwise: 6 3 0
+        //                      7 X 1
+        //                      8 5 2
+        // 
+        // Mapping: new bit i gets value from old bit map[i]
+        // New bit 0 (pos 6) ← Old bit 5 (pos 6)
+        // New bit 1 (pos 3) ← Old bit 3 (pos 3)
+        // New bit 2 (pos 0) ← Old bit 0 (pos 0)
+        // New bit 3 (pos 7) ← Old bit 6 (pos 7)
+        // New bit 4 (pos 1) ← Old bit 1 (pos 1)
+        // New bit 5 (pos 8) ← Old bit 7 (pos 8)
+        // New bit 6 (pos 5) ← Old bit 4 (pos 5)
+        // New bit 7 (pos 2) ← Old bit 2 (pos 2)
+        const map = [5, 3, 0, 6, 1, 7, 4, 2];
         let rotated = '';
         for (let i = 0; i < 8; i++) {
             rotated += pattern[map[i]];
@@ -320,32 +372,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // 将边缘块图案旋转90度
     function rotateEdgePattern(edgePattern) {
         // Edge pattern layout (12 bits):
-        // Indices 0-11 represent the 12 edge stickers around the top layer
         // Front: 0,1,2 (left, center, right)
         // Left:  3,4,5 (top, center, bottom)
         // Right: 6,7,8 (top, center, bottom)  
         // Back:  9,10,11 (left, center, right)
         
         // When rotating 90° clockwise (viewed from top):
-        // Front(0,1,2) -> Right(6,7,8)
-        // Right(6,7,8) -> Back(9,10,11) 
-        // Back(9,10,11) -> Left(3,4,5)
-        // Left(3,4,5) -> Front(0,1,2)
+        // F → R (no reverse)
+        // R → B (REVERSE)
+        // B → L (no reverse)
+        // L → F (REVERSE)
         
-        // But we also need to reverse the order within each face!
-        // Front [L,C,R] going to Right becomes [T,C,B] = [L,C,R]
-        // Right [T,C,B] going to Back becomes [R,C,L] reversed
-        // Back [L,C,R] going to Left becomes [B,C,T] = [L,C,R]  
-        // Left [T,C,B] going to Front becomes [R,C,L] reversed
-        
-        // Correct mapping after 90° clockwise rotation:
-        // Position: 0  1  2  3  4  5  6  7  8  9  10 11
-        // From:     3  4  5  11 10 9  0  1  2  8  7  6
-        const map = [3, 4, 5, 11, 10, 9, 0, 1, 2, 8, 7, 6];
         let rotated = '';
-        for (let i = 0; i < 12; i++) {
-            rotated += edgePattern[map[i]];
-        }
+        
+        // New Front ← Old Left (REVERSED)
+        rotated += edgePattern[5] + edgePattern[4] + edgePattern[3];
+        
+        // New Left ← Old Back (no reversal)
+        rotated += edgePattern[9] + edgePattern[10] + edgePattern[11];
+        
+        // New Right ← Old Front (no reversal)
+        rotated += edgePattern[0] + edgePattern[1] + edgePattern[2];
+        
+        // New Back ← Old Right (REVERSED)
+        rotated += edgePattern[8] + edgePattern[7] + edgePattern[6];
+        
         return rotated;
     }
 
@@ -386,9 +437,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const testCases = [
             { name: 'OLL21', topPattern: '01011010', edgePattern: '101000000101' },
             { name: 'OLL22', topPattern: '01011010', edgePattern: '001101000001' },
+            { name: 'OLL22 (90°)', topPattern: '01011010', edgePattern: '101001001000' },
             { name: 'OLL26', topPattern: '11011010', edgePattern: '001000001100' },
             { name: 'OLL27', topPattern: '01111010', edgePattern: '100001000001' },
             { name: 'OLL33', topPattern: '00111001', edgePattern: '110000000110' },
+            { name: 'OLL33 (90°)', topPattern: '01000111', edgePattern: '000110110000' },
+            { name: 'OLL33 (180°)', topPattern: '10011100', edgePattern: '011000000011' },
+            { name: 'OLL33 (270°)', topPattern: '11100010', edgePattern: '000011011000' },
             { name: 'OLL45', topPattern: '00111001', edgePattern: '010101000010' },
             { name: 'OLL07', topPattern: '01010100', edgePattern: '100000110011' },
             { name: 'OLL09', topPattern: '01010001', edgePattern: '001100010110' },
