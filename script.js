@@ -120,10 +120,18 @@ document.addEventListener('DOMContentLoaded', function() {
         if (detectedCase) {
             ollCase.textContent = detectedCase.name;
             ollFormula.textContent = detectedCase.formula;
+            
+            // Update the mini cube preview
+            updateMiniCubePreview(detectedCase.topPattern, detectedCase.edgePattern);
+            
             resultSection.classList.add('visible');
         } else {
             ollCase.textContent = 'Not recognized';
             ollFormula.textContent = 'Please try a different OLL case';
+            
+            // Clear the mini cube preview
+            clearMiniCubePreview();
+            
             resultSection.classList.add('visible');
         }
     });
@@ -501,6 +509,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 cubeState.edges[i] = true;
             }
         }
+    }
+    
+    // 更新迷你魔方预览
+    function updateMiniCubePreview(topPattern, edgePattern) {
+        const miniCells = document.querySelectorAll('.mini-cell');
+        const miniEdges = document.querySelectorAll('.mini-edge');
+        
+        // 顶面位置顺序：[0, 1, 2, 3, 5, 6, 7, 8]
+        const topOrder = [0, 1, 2, 3, 5, 6, 7, 8];
+        
+        // 设置顶面状态
+        for (let i = 0; i < 8; i++) {
+            const index = topOrder[i];
+            if (topPattern[i] === '1') {
+                miniCells[index].classList.add('yellow');
+            } else {
+                miniCells[index].classList.remove('yellow');
+            }
+        }
+        
+        // 设置边缘块状态
+        for (let i = 0; i < 12; i++) {
+            if (edgePattern[i] === '1') {
+                miniEdges[i].classList.add('yellow');
+            } else {
+                miniEdges[i].classList.remove('yellow');
+            }
+        }
+    }
+    
+    // 清除迷你魔方预览
+    function clearMiniCubePreview() {
+        const miniCells = document.querySelectorAll('.mini-cell');
+        const miniEdges = document.querySelectorAll('.mini-edge');
+        
+        // 清除所有黄色（除了中心块）
+        miniCells.forEach((cell, index) => {
+            if (index !== 4) { // Skip center cell
+                cell.classList.remove('yellow');
+            }
+        });
+        
+        miniEdges.forEach(edge => {
+            edge.classList.remove('yellow');
+        });
     }
 
     // 初始化页面

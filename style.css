@@ -299,6 +299,136 @@ h2 {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
+.result-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.result-text {
+    flex: 1;
+}
+
+.result-text p {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.result-preview {
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.preview-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.preview-note {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* Mini cube preview */
+.mini-cube-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.mini-cube-top {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2px;
+}
+
+.mini-cell {
+    width: 100%;
+    height: 100%;
+    background-color: #ecf0f1;
+    border: 1px solid #bdc3c7;
+    border-radius: 2px;
+}
+
+.mini-cell.yellow {
+    background-color: #f1c40f;
+    border-color: #f39c12;
+}
+
+/* Mini edge blocks */
+.mini-edge {
+    position: absolute;
+    background-color: #95a5a6;
+    border: 2px solid #7f8c8d;
+}
+
+.mini-edge.yellow {
+    background-color: #f1c40f;
+    border-color: #f39c12;
+}
+
+/* Mini top edges */
+.mini-top-edge {
+    top: 20px;
+    width: 36px;
+    height: 20px;
+    border-radius: 3px 3px 1px 1px;
+}
+
+.mini-edge-1 { left: 42px; }
+.mini-edge-2 { left: 82px; }
+.mini-edge-3 { left: 122px; }
+
+/* Mini left edges */
+.mini-left-edge {
+    left: 20px;
+    width: 20px;
+    height: 36px;
+    border-radius: 3px 1px 1px 3px;
+}
+
+.mini-edge-4 { top: 42px; }
+.mini-edge-5 { top: 82px; }
+.mini-edge-6 { top: 122px; }
+
+/* Mini right edges */
+.mini-right-edge {
+    right: 20px;
+    width: 20px;
+    height: 36px;
+    border-radius: 1px 3px 3px 1px;
+}
+
+.mini-edge-7 { top: 42px; }
+.mini-edge-8 { top: 82px; }
+.mini-edge-9 { top: 122px; }
+
+/* Mini bottom edges */
+.mini-bottom-edge {
+    bottom: 20px;
+    width: 36px;
+    height: 20px;
+    border-radius: 1px 1px 3px 3px;
+}
+
+.mini-edge-10 { left: 42px; }
+.mini-edge-11 { left: 82px; }
+.mini-edge-12 { left: 122px; }
+
 #oll-case {
     font-weight: bold;
     color: #e74c3c;
