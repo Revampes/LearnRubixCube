@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFOP Cube Learning Assistant - OLL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CFOP Cube Learning Assistant</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="oll.html">OLL</a></li>
+                    <li><a href="#" class="disabled">PLL (Coming Soon)</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="oll-section">
+                <h2>OLL (Top Cross and Colors)</h2>
+                <p>Please click the top face and surrounding edge blocks to mark the yellow positions. The center block is fixed as yellow.</p>
+                
+                <div class="cube-container">
+                    <!-- 顶部边缘块 -->
+                    <div class="edge top-edge edge-1"></div>
+                    <div class="edge top-edge edge-2"></div>
+                    <div class="edge top-edge edge-3"></div>
+                    
+                    <!-- 左侧边缘块 -->
+                    <div class="edge left-edge edge-4"></div>
+                    <div class="edge left-edge edge-5"></div>
+                    <div class="edge left-edge edge-6"></div>
+                    
+                    <!-- 魔方顶面 -->
+                    <div class="cube-top">
+                        <div class="cell cell-1"></div>
+                        <div class="cell cell-2"></div>
+                        <div class="cell cell-3"></div>
+                        <div class="cell cell-4"></div>
+                        <div class="cell cell-5 yellow"></div> <!-- 中心块 -->
+                        <div class="cell cell-6"></div>
+                        <div class="cell cell-7"></div>
+                        <div class="cell cell-8"></div>
+                        <div class="cell cell-9"></div>
+                    </div>
+                    
+                    <!-- 右侧边缘块 -->
+                    <div class="edge right-edge edge-7"></div>
+                    <div class="edge right-edge edge-8"></div>
+                    <div class="edge right-edge edge-9"></div>
+                    
+                    <!-- 底部边缘块 -->
+                    <div class="edge bottom-edge edge-10"></div>
+                    <div class="edge bottom-edge edge-11"></div>
+                    <div class="edge bottom-edge edge-12"></div>
+                </div>
+                
+                <div class="controls">
+                    <button id="reset-btn" class="btn">Reset</button>
+                    <button id="detect-btn" class="btn primary">Detect OLL Case</button>
+                    <button id="test-btn" class="btn secondary">Test Mode</button>
+                </div>
+                
+                <div id="test-mode-panel" class="test-mode hidden">
+                    <h3>Test OLL Cases</h3>
+                    <p>Click the buttons below to quickly set OLL cases for testing</p>
+                    <div id="test-cases-container" class="test-cases"></div>
+                </div>
+            </section>
+
+            <section class="result-section hidden">
+                <h2>Detection Result</h2>
+                <div class="result-content">
+                    <p>Your OLL case is: <span id="oll-case">OLL 01</span></p>
+                    <p>Corresponding algorithm: <span id="oll-formula">F (R U R' U') F'</span></p>
+                    <div class="formula-explanation">
+                        <h3>Algorithm Explanation:</h3>
+                        <p>F - Front face clockwise 90°</p>
+                        <p>B - Back face clockwise 90°</p>
+                        <p>L - Left face clockwise 90°</p>
+                        <p>R - Right face clockwise 90°</p>
+                        <p>U - Up face clockwise 90°</p>
+                        <p>D - Down face clockwise 90°</p>
+                        <p>F' - Front face counterclockwise 90°</p>
+                        <p>B' - Back face counterclockwise 90°</p>
+                        <p>L' - Left face counterclockwise 90°</p>
+                        <p>R' - Right face counterclockwise 90°</p>
+                        <p>U' - Up face counterclockwise 90°</p>
+                        <p>D' - Down face counterclockwise 90°</p>
+                        <p>Lowercase letters mean rotating two layers at once</p>
+                        <p>Parentheses () indicate a sequence of moves</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>CFOP Cube Learning Assistant &copy; 2025</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
