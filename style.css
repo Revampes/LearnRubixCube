@@ -332,9 +332,9 @@ h2 {
         border-radius: 4px 4px 1px 1px;
     }
     
-    .edge-1 { left: 55px; }
-    .edge-2 { left: 117px; }
-    .edge-3 { left: 180px; }
+    .edge-1 { left: 65px; }
+    .edge-2 { left: 115px; }
+    .edge-3 { left: 165px; }
 }
 
 /* 左侧边缘块 (Left face) */
@@ -370,9 +370,9 @@ h2 {
         border-radius: 4px 1px 1px 4px;
     }
     
-    .edge-4 { top: 55px; }
-    .edge-5 { top: 117px; }
-    .edge-6 { top: 180px; }
+    .edge-4 { top: 65px; }
+    .edge-5 { top: 115px; }
+    .edge-6 { top: 165px; }
 }
 
 /* 右侧边缘块 (Right face) */
@@ -408,9 +408,9 @@ h2 {
         border-radius: 1px 4px 4px 1px;
     }
     
-    .edge-7 { top: 55px; }
-    .edge-8 { top: 117px; }
-    .edge-9 { top: 180px; }
+    .edge-7 { top: 65px; }
+    .edge-8 { top: 115px; }
+    .edge-9 { top: 165px; }
 }
 
 /* 底部边缘块 (Back face) */
@@ -446,9 +446,9 @@ h2 {
         border-radius: 1px 1px 4px 4px;
     }
     
-    .edge-10 { left: 55px; }
-    .edge-11 { left: 117px; }
-    .edge-12 { left: 180px; }
+    .edge-10 { left: 65px; }
+    .edge-11 { left: 115px; }
+    .edge-12 { left: 165px; }
 }
 
 /* 控制按钮 */
