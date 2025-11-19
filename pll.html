@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CFOP Cube Learning Assistant - PLL</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="pll.css">
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h1>CFOP Cube Learning Assistant</h1>
+			<nav>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="oll.html">OLL</a></li>
+					<li><a href="pll.html" class="active">PLL</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+			<section class="pll-section">
+				<h2>PLL (Permutation of the Last Layer)</h2>
+				<p>Match the outer edge stickers of your final layer with the diagram below, then let the helper identify the PLL case and show the matching algorithm.</p>
+
+				<div class="pll-interactive">
+					<div class="pll-cube-panel">
+						<h3>1. Paint the edge stickers</h3>
+						<p>Pick a color from the palette, then click the numbered edge stickers around the top face. Use the standard CFOP side colors: <strong>R</strong>ed, <strong>G</strong>reen, <strong>B</strong>lue, <strong>O</strong>range.</p>
+						<div class="pll-palette" id="pll-color-palette">
+							<button type="button" class="color-chip" data-color="R">R</button>
+							<button type="button" class="color-chip" data-color="G">G</button>
+							<button type="button" class="color-chip" data-color="B">B</button>
+							<button type="button" class="color-chip" data-color="O">O</button>
+						</div>
+
+						<div class="pll-cube-container cube-container" id="pll-edge-ring">
+							<div class="pll-edge edge top-edge edge-1" data-index="0"><span class="slot-label">1</span></div>
+							<div class="pll-edge edge top-edge edge-2" data-index="1"><span class="slot-label">2</span></div>
+							<div class="pll-edge edge top-edge edge-3" data-index="2"><span class="slot-label">3</span></div>
+
+							<div class="pll-edge edge left-edge edge-4" data-index="3"><span class="slot-label">4</span></div>
+							<div class="pll-edge edge left-edge edge-5" data-index="4"><span class="slot-label">5</span></div>
+							<div class="pll-edge edge left-edge edge-6" data-index="5"><span class="slot-label">6</span></div>
+
+							<div class="pll-edge edge right-edge edge-7" data-index="6"><span class="slot-label">7</span></div>
+							<div class="pll-edge edge right-edge edge-8" data-index="7"><span class="slot-label">8</span></div>
+							<div class="pll-edge edge right-edge edge-9" data-index="8"><span class="slot-label">9</span></div>
+
+							<div class="pll-edge edge bottom-edge edge-10" data-index="9"><span class="slot-label">10</span></div>
+							<div class="pll-edge edge bottom-edge edge-11" data-index="10"><span class="slot-label">11</span></div>
+							<div class="pll-edge edge bottom-edge edge-12" data-index="11"><span class="slot-label">12</span></div>
+
+							<div class="pll-cube-top cube-top">
+								<div class="pll-cell cell"></div>
+								<div class="pll-cell cell"></div>
+								<div class="pll-cell cell"></div>
+								<div class="pll-cell cell"></div>
+								<div class="pll-cell cell yellow"></div>
+								<div class="pll-cell cell"></div>
+								<div class="pll-cell cell"></div>
+								<div class="pll-cell cell"></div>
+								<div class="pll-cell cell"></div>
+							</div>
+						</div>
+						<p class="edge-hint">Start at the front edge and move clockwise while looking down on the U face.</p>
+					</div>
+
+					<div class="pll-input-panel">
+						<h3>2. Finalize the pattern</h3>
+						<p>You can edit the 12-letter pattern directly or load a sample case.</p>
+						<label for="pll-pattern-input" class="sr-only">PLL pattern string</label>
+						<input id="pll-pattern-input" type="text" placeholder="e.g. GGGGOOBRRGBB" maxlength="12" spellcheck="false" autocomplete="off">
+
+						<div class="pll-actions">
+							<button id="pll-reset" class="btn">Reset Pattern</button>
+							<button id="pll-detect" class="btn primary">Detect PLL Case</button>
+						</div>
+						<p class="pll-status" id="pll-status" role="status" aria-live="polite"></p>
+
+						<div class="pll-sample-panel">
+							<h4>Sample edge cycles</h4>
+							<div class="pll-sample-buttons" id="pll-sample-list">
+								<button type="button" class="test-case-btn" data-pattern="GGGGOOBRRGBB">Aa perm</button>
+								<button type="button" class="test-case-btn" data-pattern="GGROOOGRRBBR">T perm</button>
+								<button type="button" class="test-case-btn" data-pattern="BOGOBBGGRBRG">E perm</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="pll-result-section hidden" id="pll-result-section">
+				<h2>Detection Result</h2>
+				<div class="result-content">
+					<div class="result-layout">
+						<div class="result-text">
+							<p>PLL case: <span id="pll-case">–</span></p>
+							<p>Primary algorithm: <span id="pll-formula">Waiting for input…</span></p>
+							<p class="normalized">Normalized pattern: <span id="pll-normalized">–</span></p>
+							<p>U rotation applied: <span id="pll-rotation">0°</span></p>
+						</div>
+						<div class="result-preview">
+							<div class="preview-label">Pattern reference</div>
+							<div class="mini-cube-container">
+								<canvas id="pll-preview" width="200" height="200">PLL preview</canvas>
+							</div>
+							<div class="preview-note">Rotate your cube so the highlighted front edge matches slot #1.</div>
+						</div>
+					</div>
+					<div class="formula-explanation">
+						<h3>Helpful reminders</h3>
+						<p>M, x, y, z indicate whole cube rotations or middle-layer moves.</p>
+						<p>Uppercase letters turn a single face clockwise; primes (') reverse the direction; 2 indicates a double turn.</p>
+						<p>Keep U on top and the front edge you started with facing you for accurate recognition.</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="pll-library" id="pll-library">
+				<h2>PLL Reference Library</h2>
+				<p>Once detection is ready you will see detailed notes for every case below. For now use this area as a quick lookup table.</p>
+				<div class="library-table" id="pll-case-table">
+					<!-- Populated dynamically -->
+				</div>
+			</section>
+		</main>
+
+		<footer>
+			<p>CFOP Cube Learning Assistant &copy; 2025</p>
+		</footer>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>

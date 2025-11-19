@@ -1,0 +1,128 @@
+[
+  {
+    "name": "Aa Perm",
+    "formula": "x (R' U R') D2 (R U' R') D2 R2 x'",
+    "pattern": "GGBGRORBRBOO",
+    "normalizedPattern": "AABACDCBCBDD"
+  },
+  {
+    "name": "Ab Perm",
+    "formula": "x R2 D2 (R U R') D2 (R U' R) x'",
+    "pattern": "GGRBRBGBOROO",
+    "normalizedPattern": "AABCBCACDBDD"
+  },
+  {
+    "name": "E Perm",
+    "formula": "y x' (R U' R' D) (R U R' D') (R U R' D) (R U' R' D') x",
+    "pattern": "GOBRGOGRBRBO",
+    "normalizedPattern": "ABCDABADCDCB"
+  },
+  {
+    "name": "F Perm",
+    "formula": "y (R' U' F') (R U R' U') R' F R2 (U' R' U') (R U R' U) R",
+    "pattern": "OOORBGGRBRGB",
+    "normalizedPattern": "AAABCDDBCBDC"
+  },
+  {
+    "name": "Ga Perm",
+    "formula": "R2 (U R' U R' U' R U') R2 D (U' R' U R) D'",
+    "pattern": "GRRGOBBGROBO",
+    "normalizedPattern": "ABBACDDABCDC"
+  },
+  {
+    "name": "Gb Perm",
+    "formula": "(R' U' R U) D' R2 (U R' U R U' R U') R2 D",
+    "pattern": "GBRGGBBORORO",
+    "normalizedPattern": "ABCAABBDCDCD"
+  },
+  {
+    "name": "Gc Perm",
+    "formula": "R2 (U' R U' R U R' U) R2 D' (U R U' R') D",
+    "pattern": "GBRGOBBRROGO",
+    "normalizedPattern": "ABCADBBCCDAD"
+  },
+  {
+    "name": "Gd Perm",
+    "formula": "(R U R' U') D R2 (U' R U' R' U R' U) R2 D'",
+    "pattern": "GORGBBBGRORO",
+    "normalizedPattern": "ABCADDDACBCB"
+  },
+  {
+    "name": "H Perm",
+    "formula": "(M2 U' M2) U2 (M2 U' M2)",
+    "pattern": "GBGRORBGBORO",
+    "normalizedPattern": "ABACDCBABDCD"
+  },
+  {
+    "name": "Ja Perm",
+    "formula": "y (R' U L') U2 (R U' R') U2 R L",
+    "pattern": "RRBOOORGGBBG",
+    "normalizedPattern": "AABCCCADDBBD"
+  },
+  {
+    "name": "Jb Perm",
+    "formula": "(R U R' F') (R U R' U') R' F R2 U' R'",
+    "pattern": "OGGOORRRGBBB",
+    "normalizedPattern": "ABBAACCCBDDD"
+  },
+  {
+    "name": "Na Perm",
+    "formula": "(R U R' U) (R U R' F') (R U R' U') R' F R2 U' R' U2 (R U' R')",
+    "pattern": "BGGOORBBGORR",
+    "normalizedPattern": "ABBCCDAABCDD"
+  },
+  {
+    "name": "Nb Perm",
+    "formula": "(R' U R U' R') (F' U' F) (R U R') (F R' F') (R U' R)",
+    "pattern": "GGBROOGBBRRO",
+    "normalizedPattern": "AABCDDABBCCD"
+  },
+  {
+    "name": "Ra Perm",
+    "formula": "y (R U' R' U') (R U R D) (R' U' R D') (R' U2 R')",
+    "pattern": "BRBGOOOGRGBR",
+    "normalizedPattern": "ABACDDDCBCAB"
+  },
+  {
+    "name": "Rb Perm",
+    "formula": "(R' U2) (R U2) (R' F R) (U R' U' R') F' R2",
+    "pattern": "OGOROGGRBRBB",
+    "normalizedPattern": "ABACABBCDCDD"
+  },
+  {
+    "name": "T Perm",
+    "formula": "(R U R' U') (R' F R2) (U' R' U') (R U R' F')",
+    "pattern": "GGRGOBBBRORO",
+    "normalizedPattern": "AABACDDDBCBC"
+  },
+  {
+    "name": "Ua Perm",
+    "formula": "y2 (M2 U M) U2 (M' U M2)",
+    "pattern": "BBBOGOGRGROR",
+    "normalizedPattern": "AAABCBCDCDBD"
+  },
+  {
+    "name": "Ub Perm",
+    "formula": "y2 (M2 U' M) U2 (M' U' M2)",
+    "pattern": "BBBOROGOGRGR",
+    "normalizedPattern": "AAABCBDBDCDC"
+  },
+  {
+    "name": "V Perm",
+    "formula": "(R' U R' U') (R D' R' D) (R' U D') (R2 U' R2) D R2",
+    "pattern": "GGBRBOGRBROO",
+    "normalizedPattern": "AABCBDACBCDD"
+  },
+  {
+    "name": "Y Perm",
+    "formula": "F R (U' R' U') (R U R' F') (R U R' U') (R' F R F')",
+    "pattern": "GGBRROGOBRBO",
+    "normalizedPattern": "AABCCDADBCBD"
+  },
+  {
+    "name": "Z Perm",
+    "formula": "(M2 U) (M2 U) (M' U2) M2 (U2 M')",
+    "pattern": "BOBOBOGRGRGR",
+    "normalizedPattern": "ABABABCDCDCD"
+  }
+]

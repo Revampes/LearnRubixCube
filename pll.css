@@ -1,0 +1,240 @@
+/* PLL page specific styles */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.pll-section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.pll-interactive {
+    display: flex;
+    gap: 25px;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pll-cube-panel,
+.pll-input-panel {
+    flex: 1 1 340px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+.pll-cube-panel h3,
+.pll-input-panel h3 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.pll-palette {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+.color-chip {
+    flex: 1 1 70px;
+    min-width: 70px;
+    padding: 10px 0;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.color-chip[data-color="R"] { background-color: #f8d7da; color: #c0392b; }
+.color-chip[data-color="G"] { background-color: #d5f5e3; color: #1e8449; }
+.color-chip[data-color="B"] { background-color: #d6eaf8; color: #1f618d; }
+.color-chip[data-color="O"] { background-color: #fdebd0; color: #d35400; }
+
+.color-chip.active {
+    border-color: #2c3e50;
+    box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.2);
+}
+
+.pll-cube-container {
+    margin: 20px auto;
+}
+
+.pll-edge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #2c3e50;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pll-edge .slot-label {
+    pointer-events: none;
+    font-size: 18px;
+}
+
+.pll-edge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.pll-edge.filled {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.pll-edge[data-color="R"] {
+    background-color: #fadbd8;
+    border-color: #c0392b;
+}
+
+.pll-edge[data-color="G"] {
+    background-color: #d5f5e3;
+    border-color: #1e8449;
+}
+
+.pll-edge[data-color="B"] {
+    background-color: #d6eaf8;
+    border-color: #1f618d;
+}
+
+.pll-edge[data-color="O"] {
+    background-color: #fdebd0;
+    border-color: #d35400;
+}
+
+.pll-edge[data-color="R"],
+.pll-edge[data-color="G"],
+.pll-edge[data-color="B"],
+.pll-edge[data-color="O"] {
+    border-width: 3px;
+}
+
+.pll-cube-top {
+    pointer-events: none;
+}
+
+.pll-cell {
+    border-radius: 6px;
+}
+
+.edge-hint {
+    margin-top: 12px;
+    font-size: 0.95rem;
+    color: #7f8c8d;
+}
+
+#pll-pattern-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #bdc3c7;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.pll-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.pll-status {
+    min-height: 20px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+.pll-status.error { color: #c0392b; }
+.pll-status.success { color: #27ae60; }
+
+.pll-sample-panel {
+    margin-top: 20px;
+    background-color: #f8f9fb;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px dashed #ccd4dd;
+}
+
+.pll-sample-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.pll-result-section.hidden { display: none; }
+.pll-result-section.visible { display: block; }
+
+#pll-formula { color: #c0392b; }
+#pll-normalized { color: #27ae60; }
+
+.pll-library {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+.library-table {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.pll-card {
+    border: 1px solid #ecf0f1;
+    border-radius: 8px;
+    padding: 12px;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pll-card h4 {
+    color: #2c3e50;
+}
+
+.pll-card code {
+    font-family: 'Courier New', monospace;
+    background-color: #fff;
+    padding: 4px 6px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .pll-interactive {
+        flex-direction: column;
+    }
+
+    .pll-actions {
+        flex-direction: column;
+    }
+
+    .pll-palette {
+        justify-content: space-between;
+    }
+}

@@ -979,13 +979,16 @@ h2 {
 .pll-btn {
     background-color: #9b59b6;
     color: white;
-    opacity: 0.5;
-    cursor: not-allowed;
 }
 
 .index-btn:hover:not(.pll-btn) {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.pll-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(155, 89, 182, 0.4);
 }
 
 footer {
@@ -1045,3 +1048,5 @@ footer {
         font-size: 13px;
     }
 }
+
+
